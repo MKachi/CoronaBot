@@ -2,7 +2,7 @@ const discord = require('discord.js')
 
 const status = (crawler, message) => {
   const infos = crawler.getStatus()
-  let result = '정보 출처 : https://coronamap.live/\r\n'
+  let result = '정보 출처 : http://ncov.mohw.go.kr/index_main.jsp/\r\n'
   const embed = new discord.RichEmbed()
     .setColor(0xFF0000)
     .setThumbnail('https://i.imgur.com/dthfKX4.png')
