@@ -11,8 +11,8 @@ dotenv.config()
 const crawler = new Crawler()
 const app = new discord.Client()
 
-const sendNews = () => {
-  if (crawler.update()) {
+const sendNews = async () => {
+  if (await crawler.update()) {
     app.guilds.forEach((guild) => {
       guild.channels.forEach((channel) => {
         if (channel.type == 'text') {

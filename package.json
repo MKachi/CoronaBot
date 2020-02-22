@@ -4,7 +4,7 @@
   "description": "코로나바이러스 Discord 봇",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
