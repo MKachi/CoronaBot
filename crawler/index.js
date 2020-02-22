@@ -10,6 +10,7 @@ module.exports = class Crawler {
   constructor() {
     this._lastMessage = null
     this._lastInfo = null
+    this._status = []
   }
   async update() {
     let driver = await new webDriver.Builder().forBrowser('chrome').build()
@@ -51,6 +52,13 @@ module.exports = class Crawler {
         }
       }
 
+      await driver.get('http://ncov.mohw.go.kr/index_main.jsp')
+      const infos = await driver.findElements(By.css('.co_cur > ul > li'))
+      this._status = []
+      for (let i = 0; i < infos.length; ++i) {
+        const info = infos[i].findElement(By.css('.num'))
+        this._status.push(await info.getText())
+      }
     } catch (except) {
       writeLog('Except', except)
       return false
@@ -67,5 +75,9 @@ module.exports = class Crawler {
 
   getLastInfo() {
     return this._lastInfo
+  }
+
+  getStatus() {
+    return this._status
   }
 }
