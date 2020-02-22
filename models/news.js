@@ -15,7 +15,7 @@ module.exports = class News {
   }
 
   getMessage() {
-    return `${this.message}\r\n${link}`
+    return `${this._message}\r\n${this._link}`
   }
 
   equals(other) {

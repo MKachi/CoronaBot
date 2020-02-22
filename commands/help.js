@@ -1,7 +1,7 @@
 const discord = require('discord.js')
 
 const help = (crawler, message) => {
-  let result = '정보 출처 https://coronamap.live/\r\n'
+  let result = '정보 출처 : https://coronamap.live/\r\n'
   const embed = new discord.RichEmbed()
     .setColor(0xFF0000)
     .setThumbnail('https://i.imgur.com/dthfKX4.png')

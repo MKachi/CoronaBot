@@ -16,7 +16,7 @@ app.on('message', msg => router(crawler, msg))
 
 app.on('ready', () => {
   writeLog('Info', `Corona bot is running at ${app.user.tag}`)
-  crawler.init().then(() => {
+  crawler.update().then(() => {
     writeLog('Info', 'Crawler is ready!')
   })
 })
