@@ -10,6 +10,10 @@ module.exports = class News {
     return this._label
   }
 
+  getTimestamp() {
+    return this._timestamp
+  }
+
   getMessage() {
     return `${this.message}\r\n${link}`
   }

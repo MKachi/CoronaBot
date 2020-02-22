@@ -6,11 +6,11 @@ const webDriver = require('selenium-webdriver')
 const By = webDriver.By
 const url = 'https://coronamap.live'
 
-class Crawler {
-
+module.exports = class Crawler {
   constructor() {
-    this._lastMessage = this._getTopMessage()
+    this._lastMessage = null
   }
+
   async init() {
     this._lastMessage = this._getTopMessage()
   }
@@ -61,5 +61,3 @@ class Crawler {
     return this._lastMessage
   }
 }
-
-module.exports = Crawler

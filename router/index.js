@@ -3,15 +3,15 @@ const {
 } = require('../utils')
 const settings = require('./router')
 
-const router = (message) => {
-  if (message.channel.type != 'dm') {
+const router = (crawler, message) => {
+  if (message.channel.type == 'dm') {
     return
   }
 
   settings.forEach(info => {
     if (message.content == info.command) {
       writeLog('Bot', `Route to ${info.command}`)
-      info.route(message)
+      info.route(crawler, message)
     }
   })
 }
