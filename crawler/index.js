@@ -13,6 +13,7 @@ module.exports = class Crawler {
     this._status = []
   }
   async update() {
+    let flag = false
     let driver = await new webDriver.Builder().forBrowser('chrome').build()
     try {
       await driver.get(url)
@@ -41,8 +42,9 @@ module.exports = class Crawler {
         if (i == 0) {
           const last = new News(label, timestamp, infoValue, linkValue)
           if (this._lastMessage != null && this._lastMessage.equals(last)) {
-            return false
+            return flag
           }
+          flag = true
           this._lastMessage = last
         }
 
@@ -61,12 +63,12 @@ module.exports = class Crawler {
       }
     } catch (except) {
       writeLog('Except', except)
-      return false
+      return flag
 
     } finally {
       driver.quit()
     }
-    return true
+    return flag
   }
 
   getLastMessage() {
