@@ -3,6 +3,7 @@ const {
 } = require('../utils')
 const News = require('../models/news')
 const webDriver = require('selenium-webdriver')
+const chrome = require('selenium-webdriver/chrome')
 const By = webDriver.By
 const url = 'https://corona-live.com/'
 
@@ -22,8 +23,9 @@ module.exports = class Crawler {
   }
 
   async update() {
+    writeLog('Info', 'Update')
     let flag = false
-    let driver = await new webDriver.Builder().forBrowser('chrome').build()
+    let driver = await new webDriver.Builder().forBrowser('chrome').setChromeOptions(new chrome.Options().headless()).build()
     try {
       await driver.get(url)
       await this.wait(3000)
