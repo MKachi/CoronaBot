@@ -15,7 +15,7 @@ const status = (crawler, message) => {
     .addField('완치', infos[5], true)
     .setDescription(result)
     .setFooter('https://github.com/MKachi/CoronaBot')
-  message.channel.sendEmbed(embed)
+  message.channel.send(embed)
 }
 
 module.exports = status

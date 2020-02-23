@@ -26,7 +26,7 @@ const sendNews = async () => {
               .setTitle(news.getLabel())
               .setDescription(news.getMessage())
               .setFooter(news.getTimestamp())
-            textChannel.sendEmbed(embed)
+            textChannel.send(embed)
           }
         } catch (except) {
           writeLog('Except', except)

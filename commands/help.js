@@ -10,7 +10,7 @@ const help = (crawler, message) => {
     .addField('!현황', '지금까지 집계된 확진자, 완치, 사망자의 수를 알려줍니다.')
     .setDescription(result)
     .setFooter('https://github.com/MKachi/CoronaBot')
-  message.channel.sendEmbed(embed)
+  message.channel.send(embed)
 }
 
 module.exports = help

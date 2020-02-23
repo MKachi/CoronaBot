@@ -20,14 +20,12 @@ module.exports = class News {
 
   equals(other) {
     if (
-      other._label == undefined ||
       other._message == undefined ||
       other._link == undefined) {
       return false
     }
 
     if (
-      this._label != other._label ||
       this._message != other._message ||
       this._link != other._link) {
       return false

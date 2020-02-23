@@ -8,7 +8,7 @@ const news = (crawler, message) => {
     .setTitle(news.getLabel())
     .setDescription(news.getMessage())
     .setFooter(news.getTimestamp())
-  message.channel.sendEmbed(embed)
+  message.channel.send(embed)
 }
 
 module.exports = news
