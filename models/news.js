@@ -21,7 +21,6 @@ module.exports = class News {
   equals(other) {
     if (
       other._label == undefined ||
-      other._timestamp == undefined ||
       other._message == undefined ||
       other._link == undefined) {
       return false
@@ -29,7 +28,6 @@ module.exports = class News {
 
     if (
       this._label != other._label ||
-      this._timestamp != other._timestamp ||
       this._message != other._message ||
       this._link != other._link) {
       return false
