@@ -1,6 +1,4 @@
-const {
-  writeLog
-} = require('../utils')
+const { writeLog } = require('../utils')
 const News = require('../models/news')
 const webDriver = require('selenium-webdriver')
 const chrome = require('selenium-webdriver/chrome')
@@ -25,7 +23,10 @@ module.exports = class Crawler {
   async update() {
     writeLog('Info', 'Fetch Data...')
     let flag = false
-    let driver = await new webDriver.Builder().forBrowser('chrome').setChromeOptions(new chrome.Options().headless()).build()
+    let driver = await new webDriver.Builder()
+      .forBrowser('chrome')
+      .setChromeOptions(new chrome.Options().headless())
+      .build()
     try {
       await driver.get(url)
       await this.wait(3000)
@@ -47,7 +48,16 @@ module.exports = class Crawler {
         const target = messages[i]
 
         // Label
-        const label = await target.findElements(By.css('.time > .news'))
+        let label = await target.findElements(By.css('.time > .news'))
+
+        if (label.length <= 0) {
+          label = await target.findElements(By.css('.time > .report'))
+        }
+
+        if (label.length <= 0) {
+          label = await target.findElements(By.css('.time > .official'))
+        }
+
         let labelText = ''
         if (label.length > 0) {
           labelText = await label[0].getText()
@@ -95,13 +105,12 @@ module.exports = class Crawler {
 
         if (labelText != '개발자') {
           this._lastInfo = new News(labelText, timestamp, description, link)
-          break;
+          break
         }
       }
     } catch (except) {
       writeLog('Except', except)
       return false
-
     } finally {
       driver.quit()
       writeLog('Info', 'Finish!')
