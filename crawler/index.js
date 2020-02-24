@@ -50,7 +50,7 @@ module.exports = class Crawler {
         const label = await target.findElements(By.css('.time > .news'))
         let labelText = ''
         if (label.length > 0) {
-          labelText = await label.getText()
+          labelText = await label[0].getText()
         }
 
         // Timestamp
