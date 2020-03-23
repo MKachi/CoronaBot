@@ -1,4 +1,9 @@
-const { writeLog } = require('../utils')
+const {
+  writeLog,
+  deleteFolderRecursive
+} = require('../utils')
+const os = require('os')
+const glob = require('glob')
 const News = require('../models/news')
 const webDriver = require('selenium-webdriver')
 const chrome = require('selenium-webdriver/chrome')
@@ -113,6 +118,11 @@ module.exports = class Crawler {
       return false
     } finally {
       driver.quit()
+
+      const files = glob.sync(os.tmpdir() + '/scoped_dir*')
+      for (let i = 0; i < files.length; ++i) {
+        deleteFolderRecursive(files[i])
+      }
       writeLog('Info', 'Finish!')
     }
     return flag

@@ -1,3 +1,4 @@
+const fs = require('fs')
 const moment = require('moment')
 require('moment-timezone')
 
@@ -27,8 +28,23 @@ const writeLog = (type, message) => {
   console.log(`${getKorTime('YYYY-MM-DD HH:mm:ss')} : [${type}] ${message}`)
 }
 
+const deleteFolderRecursive = (path) => {
+  if (fs.existsSync(path)) {
+    fs.readFileSync(path).forEach((file) => {
+      const curPath = path + '/' + file
+      if (fs.lstatSync(curPath).isDirectory()) {
+        deleteFolderRecursive(curPath)
+      } else {
+        fs.unlinkSync(curPath)
+      }
+    })
+    fs.rmdirSync(path)
+  }
+}
+
 module.exports = {
   isEmpty,
   getKorTime,
-  writeLog
+  writeLog,
+  deleteFolderRecursive
 }
