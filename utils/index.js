@@ -27,10 +27,9 @@ const getKorTime = (format) => {
 const writeLog = (type, message) => {
   console.log(`${getKorTime('YYYY-MM-DD HH:mm:ss')} : [${type}] ${message}`)
 }
-
 const deleteFolderRecursive = (path) => {
   if (fs.existsSync(path)) {
-    fs.readFileSync(path).forEach((file) => {
+    fs.readdirSync(path).forEach((file) => {
       const curPath = path + '/' + file
       if (fs.lstatSync(curPath).isDirectory()) {
         deleteFolderRecursive(curPath)
