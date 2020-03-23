@@ -121,7 +121,7 @@ module.exports = class Crawler {
 
       const folders = glob.sync(os.tmpdir() + '/scoped_dir*')
       for (let i = 0; i < folders.length; ++i) {
-        console.log(`임시 폴더 : ${folders[i]} 삭제`)
+        writeLog('Info', `임시 폴더 : ${folders[i]} 삭제`)
         deleteFolderRecursive(folders[i])
       }
       writeLog('Info', 'Finish!')

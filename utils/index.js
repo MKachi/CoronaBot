@@ -28,16 +28,20 @@ const writeLog = (type, message) => {
   console.log(`${getKorTime('YYYY-MM-DD HH:mm:ss')} : [${type}] ${message}`)
 }
 const deleteFolderRecursive = (path) => {
-  if (fs.existsSync(path)) {
-    fs.readdirSync(path).forEach((file) => {
-      const curPath = path + '/' + file
-      if (fs.lstatSync(curPath).isDirectory()) {
-        deleteFolderRecursive(curPath)
-      } else {
-        fs.unlinkSync(curPath)
-      }
-    })
-    fs.rmdirSync(path)
+  try {
+    if (fs.existsSync(path)) {
+      fs.readdirSync(path).forEach((file) => {
+        const curPath = path + '/' + file
+        if (fs.lstatSync(curPath).isDirectory()) {
+          deleteFolderRecursive(curPath)
+        } else {
+          fs.unlinkSync(curPath)
+        }
+      })
+      fs.rmdirSync(path)
+    }
+  } catch (except) {
+    writeLog('Except', except)
   }
 }
 
