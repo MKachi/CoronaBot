@@ -119,9 +119,10 @@ module.exports = class Crawler {
     } finally {
       driver.quit()
 
-      const files = glob.sync(os.tmpdir() + '/scoped_dir*')
-      for (let i = 0; i < files.length; ++i) {
-        deleteFolderRecursive(files[i])
+      const folders = glob.sync(os.tmpdir() + '/scoped_dir*')
+      for (let i = 0; i < folders.length; ++i) {
+        console.log(`임시 폴더 : ${folders[i]} 삭제`)
+        deleteFolderRecursive(folders[i])
       }
       writeLog('Info', 'Finish!')
     }
