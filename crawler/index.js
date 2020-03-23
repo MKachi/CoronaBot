@@ -118,15 +118,22 @@ module.exports = class Crawler {
       return false
     } finally {
       driver.quit()
+      this.removeTempFolder()
+      writeLog('Info', 'Finish!')
+    }
+    return flag
+  }
 
+  removeTempFolder() {
+    try {
       const folders = glob.sync(os.tmpdir() + '/scoped_dir*')
       for (let i = 0; i < folders.length; ++i) {
         writeLog('Info', `임시 폴더 : ${folders[i]} 삭제`)
         deleteFolderRecursive(folders[i])
       }
-      writeLog('Info', 'Finish!')
+    } catch (except) {
+      writeLog('Except', except)
     }
-    return flag
   }
 
   getLastMessage() {
