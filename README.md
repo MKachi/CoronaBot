@@ -1,7 +1,8 @@
 # CoronaBot
 <img style="width: 200px" src="https://i.imgur.com/dthfKX4.png"/>
   
-[코로나 맵 라이브 뉴스](https://corona-live.com/)를 Discord로 알림 받을 수 있습니다.  
+~~[코로나 맵 라이브 뉴스](https://corona-live.com/)를 Discord로 알림 받을 수 있습니다.~~  
+현재 동작하지 않습니다.
   
 ### 개발 환경
 * NodeJS (v12.9.1)
